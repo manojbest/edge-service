@@ -1,0 +1,37 @@
+server:
+    port: 8070
+spring:
+    application:
+        name: edge-service
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    preferIpAddress: true
+
+eircodeservice:
+    address:
+        lookup:
+            url: http://eir-code-service/api/v1/eir/postcoder/address/{address-fragment}
+    coordinate:
+        lookup:
+            url: http://eir-code-service/api/v1/eir/postcoder/position/{address-fragment}
+    geoaddress:
+        lookup:
+            url: http://eir-code-service/api/v1/eir/postcoder/addressgeo/{address-fragment}
+    raddress:
+        lookup:
+            url: http://eir-code-service/api/v1/eir/postcoder/rgeoaddress/{latitude}/{longitude}/{distance}
+            
+ukcodeservice:
+    address:
+        lookup:
+            url: http://uk-code-service/api/v1/uk/postcoder/address/{address-fragment}
+        validate:
+            lookup:
+                url: http://uk-code-service/api/v1/uk/postcoder/validate/{address-fragment}
+    street:
+        lookup:
+            url: http://uk-code-service/api/v1/uk/postcoder/street/{address-fragment}
